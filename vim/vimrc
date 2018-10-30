@@ -1,0 +1,115 @@
+" Vimrc File
+
+let mapleader = "\<Space>"
+
+nmap <leader>vr :sp $MYVIMRC<CR>
+nmap <leader>so :source $MYVIMRC<CR>
+
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'mileszs/ack.vim'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-rails'
+Plugin 'ngmy/vim-rubocop'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+" Allow us to use Ctrl-s and Ctrl-q as keybinds
+" silent !stty -ixon
+
+" Restore default behaviour when leaving Vim.
+autocmd VimLeave * silent !stty ixon
+
+" Color
+set t_Co=256
+colorscheme ir_black
+
+" Custom config
+syntax on
+set nocompatible                " Don't maintain compatibilty with Vi.
+set mouse=a
+set number                      " Display line numbers beside buffer
+set backspace=indent,eol,start  " Sane backspace behavior
+
+" Identation
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
+" Map keys
+map <C-S-Up> :wincmd k<CR>
+map <C-S-Down> :wincmd j<CR>
+map <C-S-Left> :wincmd h<CR>
+map <C-S-Right> :wincmd l<CR>
+map <C-n> :NERDTreeToggle<CR>
+map œ :q <CR>                           " <Option-q>
+map ® :NERDTreeFind <CR>                " <Option-r>
+nmap ß :w <CR> :echo "Saved!" <CR>      " <Option-s>
+imap ß <Esc>:w <CR> :echo "Saved!" <CR> " <Option-s>
+
+" Move lines
+nnoremap ∆ :m .+1<CR>==        " <Option-k>
+nnoremap ˚ :m .-2<CR>==        " <Option-j>
+inoremap ∆ <Esc>:m .+1<CR>==gi " <Option-k>
+inoremap ˚ <Esc>:m .-2<CR>==gi " <Option-j>
+vnoremap ∆ :m '>+1<CR>gv=gv    " <Option-k>
+vnoremap ˚ :m '<-2<CR>gv=gv    " <Option-j>
+
+" Copy and paste
+vmap ç y:call system("pbcopy", getreg("\""))<CR> " <Option-c>
+nmap √ :call setreg("\"",system("pbpaste"))<CR>p " <Option-v>
+
+" NERDTree
+" open NERDTree automatically
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" Highlight line
+set cursorline
+hi cursorline cterm=none term=none
+highlight CursorLine guibg=#303000 ctermbg=234
+
+" Color column
+set colorcolumn=80
+highlight ColorColumn guibg=#303000 ctermbg=234
+
+" ControlP
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<C-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" Remove trailing white spaces
+autocmd BufWritePre * %s/\s\+$//e
+
+" Copy current path file
+let @+ = expand("%")
+nmap pwf :let @+ = expand("%")<CR>
+
+let g:vimrubocop_keymap = 0
+nmap <Leader>r :RuboCop<CR>
+
