@@ -38,7 +38,6 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
 " Allow us to use Ctrl-s and Ctrl-q as keybinds
 " silent !stty -ixon
 
@@ -112,4 +111,9 @@ nmap pwf :let @+ = expand("%")<CR>
 
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop<CR>
+
+" Clone current line and puts it down
+vnoremap ∂ Yp        " <Option-d>
+inoremap ∂ <Esc> Yp  " <Option-d>
+nnoremap ∂ Yp        " <Option-d>
 
