@@ -83,6 +83,13 @@ vnoremap ˚ :m '<-2<CR>gv=gv    " <Option-j>
 vmap ç y:call system("pbcopy", getreg("\""))<CR> " <Option-c>
 nmap √ :call setreg("\"",system("pbpaste"))<CR>p " <Option-v>
 
+" Tabs
+nnoremap † :tabnew<CR> " <Option-t> new tab
+map! ‘ <Esc>gt<CR>i    " <Option-[> move right
+map! “ <Esc>gT<CR>i    " <Option-]> move left
+nmap ‘ gt              " <Option-[> move right
+nmap “ gT              " <Option-]> move left
+
 " NERDTree
 " open NERDTree automatically
 autocmd StdinReadPre * let s:std_in=1
