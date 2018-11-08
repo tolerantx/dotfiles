@@ -22,6 +22,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-rails'
 Plugin 'ngmy/vim-rubocop'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -85,10 +87,10 @@ nmap √ :call setreg("\"",system("pbpaste"))<CR>p " <Option-v>
 
 " Tabs
 nnoremap † :tabnew<CR> " <Option-t> new tab
-map! ‘ <Esc>gt<CR>i    " <Option-[> move right
-map! “ <Esc>gT<CR>i    " <Option-]> move left
-nmap ‘ gt              " <Option-[> move right
-nmap “ gT              " <Option-]> move left
+map! ‘ <Esc>gt<CR>     " <Option-[> move right
+map! “ <Esc>gT<CR>     " <Option-]> move left
+nmap ‘ <Esc>gt<CR>     " <Option-[> move right
+nmap “ <Esc>gT<CR>     " <Option-]> move left
 
 " NERDTree
 " open NERDTree automatically
