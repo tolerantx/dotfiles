@@ -36,6 +36,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'djoshea/vim-autoread'
 Plugin 'kana/vim-textobj-user'
 Plugin 'textobj-rubyblock'
+Plugin 'thoughtbot/vim-rspec'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -64,7 +65,7 @@ colorscheme ir_black
 
 " Custom config
 syntax on
-set nocompatible                " Don't maintain compatibilty with Vi.
+" set nocompatible                " Don't maintain compatibilty with Vi.
 set mouse=a
 set number                      " Display line numbers beside buffer
 set backspace=indent,eol,start  " Sane backspace behavior
@@ -111,10 +112,17 @@ map! “ <Esc>gT<CR>     " <Option-]> move left
 nmap ‘ <Esc>gt<CR>     " <Option-[> move right
 nmap “ <Esc>gT<CR>     " <Option-]> move left
 
+" RSpec.vim mappings
+let g:rspec_command = '!bin/eureka rspec {spec}'
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
 " NERDTree
 " open NERDTree automatically
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " Highlight line
 set cursorline
